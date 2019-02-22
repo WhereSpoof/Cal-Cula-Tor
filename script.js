@@ -5,16 +5,16 @@ coef1 = document.getElementsByClassName('coef')[1]
 bet1 = document.getElementsByClassName('bet')[1]
 profit1 = document.getElementsByClassName('profit')[1]
 
-coef0.addEventListener("input", top_string, true);
-bet0.addEventListener("input", top_string, true);
-coef1.addEventListener("input", bottom_string, true);
-bet1.addEventListener("input", bottom_string, true);
+coef0.addEventListener("input", top_string_upd, true);
+bet0.addEventListener("input", top_string_upd, true);
+coef1.addEventListener("input", bottom_string_upd, true);
+bet1.addEventListener("input", bottom_string_upd, true);
 
-function top_string() {
+function top_string_upd() {
     calc(coef0, bet0, coef1, bet1)
 }
 
-function bottom_string() {
+function bottom_string_upd() {
     calc(coef1, bet1, coef0, bet0)
 }
 
