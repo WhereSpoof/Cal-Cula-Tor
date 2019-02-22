@@ -5,6 +5,7 @@ body {
 
 div.cont {
     font-size: 16pt;
+    margin-top: 5%;
     margin-left: 20%;
 }
 
@@ -46,5 +47,6 @@ div.profit-cont {
 div.profit {
     height: 30px;
     vertical-align: bottom;
+    text-align: right;
     line-height: 45px;
 }
