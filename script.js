@@ -19,10 +19,13 @@ function bottom_string_upd() {
 }
 
 function calc(c0, b0, c1, b1) {
+    max_num = 1000000
+    if (get_int(b0.value) > max_num)
+        b0.value = max_num
     bet = get_float(c0) * get_float(b0) / get_float(c1)
     if (isNaN(bet))
         return
-    b1.value = hybrid_floor(bet)
+    b1.value = hybrid_round(bet)
 
     calc_profit()
 }
@@ -33,15 +36,21 @@ function calc_profit() {
     profit1.innerHTML = ~~(get_float(coef1) * get_float(bet1) - bet_cost)
 }
 
-function hybrid_floor(num) {
-    return floor(num, (~~num).toString().length - 2)
+function hybrid_round(num) {
+    num = ~~num
+    size = num.toString().length
+    floor_to_arr = [1, 1, 5, 10, 50, 100, 1000, 10000]
+    to = floor_to_arr[size]
+    num = round_to(num, to)
+    return num;
 }
 
-function floor(num, pos = 0) {
-    if (pos <= 0)
-        return ~~num;
-    mod = 10 ** pos
-    return ~~(num / mod) * mod
+function round_to(x, to) {
+    return (x % to) >= to / 2 ? parseInt(x / to) * to + to : parseInt(x / to) * to;
+}
+
+function get_int(elem) {
+    return parseInt(elem.value)
 }
 
 function get_float(elem) {
