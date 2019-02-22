@@ -45,5 +45,5 @@ function floor(num, pos = 0) {
 }
 
 function get_float(elem) {
-    return parseFloat(elem.value)
+    return parseFloat(elem.value.replace(",", "."))
 }
