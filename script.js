@@ -20,7 +20,7 @@ function bottom_string_upd() {
 
 function calc(c0, b0, c1, b1) {
     max_num = 1000000
-    if (get_int(b0.value) > max_num)
+    if (get_int(b0) > max_num)
         b0.value = max_num
     bet = get_float(c0) * get_float(b0) / get_float(c1)
     if (isNaN(bet))
