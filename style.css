@@ -7,13 +7,13 @@ div.profit-percent-cont {
     font-size: 18pt;
     position: absolute;
     top: 40%;
-    left: 42%;
+    left: 44%;
 }
 
 div.cont {
     font-size: 16pt;
-    margin-top: 5%;
-    margin-left: 20%;
+    margin-top: 6%;
+    margin-left: 25%;
 }
 
 input[type="text"] {

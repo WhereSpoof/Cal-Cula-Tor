@@ -5,6 +5,7 @@ coef1 = document.getElementsByClassName('coef')[1]
 bet1 = document.getElementsByClassName('bet')[1]
 profit1 = document.getElementsByClassName('profit')[1]
 profit_percent = document.getElementsByClassName('profit-percent')[0]
+profit_percent_cont = document.getElementsByClassName('profit-percent-cont')[0]
 
 coef0.addEventListener("input", top_string_upd, true);
 bet0.addEventListener("input", top_string_upd, true);
@@ -25,7 +26,15 @@ function calc_profit_percent() {
     p2 = v2 * c2 - (v1 + v2)
     p = (p1 + p2) / 2
 
-    profit_percent.innerHTML = ~~(p * 10) / 10
+    p = ~~(p * 10) / 10
+    if (p < 0)
+        profit_percent_cont.style.color = '#890000'
+    else if (p > 10) {
+        profit_percent_cont.style.color = '#008900'
+    } else {
+        profit_percent_cont.style.color = '#000000'
+    }
+    profit_percent.innerHTML = p
 }
 
 function top_string_upd() {
