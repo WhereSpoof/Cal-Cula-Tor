@@ -4,11 +4,29 @@ profit0 = document.getElementsByClassName('profit')[0]
 coef1 = document.getElementsByClassName('coef')[1]
 bet1 = document.getElementsByClassName('bet')[1]
 profit1 = document.getElementsByClassName('profit')[1]
+profit_percent = document.getElementsByClassName('profit-percent')[0]
 
 coef0.addEventListener("input", top_string_upd, true);
 bet0.addEventListener("input", top_string_upd, true);
 coef1.addEventListener("input", bottom_string_upd, true);
 bet1.addEventListener("input", bottom_string_upd, true);
+coef0.addEventListener("input", calc_profit_percent, true)
+coef1.addEventListener("input", calc_profit_percent, true)
+
+function calc_profit_percent() {
+    c1 = coef0.value
+    c2 = coef1.value
+
+    v = 100
+    l = 1 / c1 + 1 / c2
+    v1 = v / (l * c1)
+    v2 = v / (l * c2)
+    p1 = v1 * c1 - (v1 + v2)
+    p2 = v2 * c2 - (v1 + v2)
+    p = (p1 + p2) / 2
+
+    profit_percent.innerHTML = ~~(p * 10) / 10
+}
 
 function top_string_upd() {
     calc(coef0, bet0, coef1, bet1)

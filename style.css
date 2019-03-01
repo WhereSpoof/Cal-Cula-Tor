@@ -3,6 +3,13 @@ body {
     font-size: 20px;
 }
 
+div.profit-percent-cont {
+    font-size: 18pt;
+    position: absolute;
+    top: 40%;
+    left: 42%;
+}
+
 div.cont {
     font-size: 16pt;
     margin-top: 5%;
