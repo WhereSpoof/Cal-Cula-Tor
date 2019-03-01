@@ -27,13 +27,24 @@ function calc_profit_percent() {
     p = (p1 + p2) / 2
 
     p = ~~(p * 10) / 10
-    if (p < 0)
-        profit_percent_cont.style.color = '#890000'
-    else if (p > 10) {
-        profit_percent_cont.style.color = '#008900'
+    color = ~~p * 5
+    MAX_COLOR = 190
+    if (color < 0) {
+        color = -color
+        if (color > MAX_COLOR) color = MAX_COLOR
+        profit_percent_cont.style.color = 'rgb(' + color + ',0,0)'
     } else {
-        profit_percent_cont.style.color = '#000000'
+        if (color > MAX_COLOR) color = MAX_COLOR
+        profit_percent_cont.style.color = 'rgb(0,' + color + ',0)'
     }
+
+    // if (p < 0)
+    //     profit_percent_cont.style.color = '#890000'
+    // else if (p > 10) {
+    //     profit_percent_cont.style.color = '#008900'
+    // } else {
+    //     profit_percent_cont.style.color = '#000000'
+    // }
     profit_percent.innerHTML = p
 }
 
