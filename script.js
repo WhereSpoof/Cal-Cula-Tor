@@ -15,8 +15,8 @@ coef0.addEventListener("input", calc_profit_percent, true)
 coef1.addEventListener("input", calc_profit_percent, true)
 
 function calc_profit_percent() {
-    c1 = coef0.value
-    c2 = coef1.value
+    c1 = get_float(coef0)
+    c2 = get_float(coef1)
 
     v = 100
     l = 1 / c1 + 1 / c2
