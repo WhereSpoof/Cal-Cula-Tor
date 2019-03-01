@@ -27,10 +27,10 @@ function calc_profit_percent() {
     p = (p1 + p2) / 2
 
     p = ~~(p * 10) / 10
-    color = ~~p * 12
-    MAX_COLOR = 170
+    color = ~~p * 13
+    MAX_COLOR = 165
     if (color < 0) {
-        color = -color + 20
+        color = -color + 40
         if (color > MAX_COLOR) color = MAX_COLOR
         profit_percent_cont.style.color = 'rgb(' + color + ',0,0)'
     } else {
