@@ -86,5 +86,11 @@ function get_int(elem) {
 }
 
 function get_float(elem) {
-    return parseFloat(elem.value.replace(",", "."))
+    return parseFloat(check_float(elem))
+}
+
+function check_float(elem) {
+    num = elem.value.replace("ю", ".").replace("б", ".").replace(",", '.')
+    elem.value = num
+    return num
 }
