@@ -1,18 +1,43 @@
-coef0 = document.getElementsByClassName('coef')[0]
-bet0 = document.getElementsByClassName('bet')[0]
-profit0 = document.getElementsByClassName('profit')[0]
-coef1 = document.getElementsByClassName('coef')[1]
-bet1 = document.getElementsByClassName('bet')[1]
-profit1 = document.getElementsByClassName('profit')[1]
-profit_percent = document.getElementsByClassName('profit-percent')[0]
-profit_percent_cont = document.getElementsByClassName('profit-percent-cont')[0]
+var coef0, coef1, bet0, bet1, profit0, profit1, profit_percent, profit_percent_cont
 
-coef0.addEventListener("input", top_string_upd, true);
-bet0.addEventListener("input", top_string_upd, true);
-coef1.addEventListener("input", bottom_string_upd, true);
-bet1.addEventListener("input", bottom_string_upd, true);
-coef0.addEventListener("input", calc_profit_percent, true)
-coef1.addEventListener("input", calc_profit_percent, true)
+window.onload = () => {
+    // Setup selectors
+    coef0 = document.getElementsByClassName('coef')[0]
+    bet0 = document.getElementsByClassName('bet')[0]
+    profit0 = document.getElementsByClassName('profit')[0]
+    coef1 = document.getElementsByClassName('coef')[1]
+    bet1 = document.getElementsByClassName('bet')[1]
+    profit1 = document.getElementsByClassName('profit')[1]
+    profit_percent = document.getElementsByClassName('profit-percent')[0]
+    profit_percent_cont = document.getElementsByClassName('profit-percent-cont')[0]
+
+    // Setup event listners
+    coef0.addEventListener('input', top_string_upd, true);
+    bet0.addEventListener('input', top_string_upd, true);
+    coef1.addEventListener('input', bottom_string_upd, true);
+    bet1.addEventListener('input', bottom_string_upd, true);
+    coef0.addEventListener('input', calc_profit_percent, true)
+    coef1.addEventListener('input', calc_profit_percent, true)
+    for (i = 0; i < 4; i++)
+        document.getElementsByClassName('field')[i].addEventListener('keydown', tabbed, false)
+}
+
+function tabbed(ev) {
+    if (ev.key != 'Tab')
+        return true
+
+    for (i = 0; i < 4; i++)
+        if (document.getElementsByClassName('field')[i] == ev.target) {
+            if (i == 3)
+                document.getElementsByClassName('field')[0].focus()
+            else
+                document.getElementsByClassName('field')[i+1].focus()
+            break
+        }
+
+    ev.preventDefault()
+    return false
+}
 
 function calc_profit_percent() {
     c1 = get_float(coef0)
@@ -90,7 +115,7 @@ function get_float(elem) {
 }
 
 function check_float(elem) {
-    num = elem.value.replace("ю", ".").replace("б", ".").replace(",", '.')
+    num = elem.value.replace('ю', '.').replace('б', '.').replace(',', '.')
     elem.value = num
     return num
 }

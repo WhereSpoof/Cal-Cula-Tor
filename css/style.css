@@ -11,15 +11,17 @@ body {
 
 div.profit-percent-cont {
     font-size: 18pt;
+    font-weight: bold;
     position: absolute;
-    top: 40%;
-    left: 44%;
+    margin-top: 12%;
+    margin-left: 45%;
 }
 
 div.cont {
     font-size: 16pt;
     margin-top: 6%;
     margin-left: 25%;
+    float: none;
 }
 
 input[type="text"] {
