@@ -16,8 +16,12 @@ window.onload = () => {
     bet0.addEventListener('input', top_string_upd, true);
     coef1.addEventListener('input', bottom_string_upd, true);
     bet1.addEventListener('input', bottom_string_upd, true);
+
+    // For profit percent calculation
     coef0.addEventListener('input', calc_profit_percent, true)
     coef1.addEventListener('input', calc_profit_percent, true)
+
+    // For tabs
     for (i = 0; i < 4; i++)
         document.getElementsByClassName('field')[i].addEventListener('keydown', tabbed, false)
 }
@@ -37,6 +41,33 @@ function tabbed(ev) {
 
     ev.preventDefault()
     return false
+}
+
+function top_string_upd() {
+    fix_mode = get_fix_mode()
+
+    if (fix_mode == 3 || fix_mode == 2)
+        calc(coef0, bet0, coef1, bet1)
+    else
+        calc_profit()
+}
+
+function bottom_string_upd() {
+    fix_mode = get_fix_mode()
+
+    if (fix_mode == 3 || fix_mode == 1)
+        calc(coef1, bet1, coef0, bet0)
+    else
+        calc_profit()
+}
+
+function get_fix_mode() {
+    if (document.getElementsByClassName('fix-choice')[0].checked)
+        return 1
+    if (document.getElementsByClassName('fix-choice')[1].checked)
+        return 2
+    if (document.getElementsByClassName('fix-choice')[2].checked)
+        return 3
 }
 
 function calc_profit_percent() {
@@ -65,14 +96,6 @@ function calc_profit_percent() {
     }
 
     profit_percent.innerHTML = p
-}
-
-function top_string_upd() {
-    calc(coef0, bet0, coef1, bet1)
-}
-
-function bottom_string_upd() {
-    calc(coef1, bet1, coef0, bet0)
 }
 
 function calc(c0, b0, c1, b1) {

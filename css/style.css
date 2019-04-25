@@ -10,7 +10,7 @@ body {
 }
 
 div.profit-percent-cont {
-    font-size: 18pt;
+    font-size: 20pt;
     font-weight: bold;
     position: absolute;
     margin-top: 12%;
@@ -20,8 +20,12 @@ div.profit-percent-cont {
 div.cont {
     font-size: 16pt;
     margin-top: 6%;
-    margin-left: 25%;
+    margin-left: 20%;
     float: none;
+}
+
+input[type="radio"] {
+    margin-bottom: 35px;
 }
 
 input.field[type="text"] {
@@ -56,6 +60,11 @@ input.bet {
 }
 
 div.profit-cont {
+    float: left;
+    margin-right: 130px;
+}
+
+div.fix-cont {
     float: left;
 }
 
