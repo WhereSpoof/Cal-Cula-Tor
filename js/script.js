@@ -46,19 +46,19 @@ function tabbed(ev) {
 function top_string_upd() {
     fix_mode = get_fix_mode()
 
-    if (fix_mode == 3 || fix_mode == 2)
+    if (fix_mode == 3 || fix_mode == 1)
         calc(coef0, bet0, coef1, bet1)
     else
-        calc_profit()
+        calc(coef1, bet1, coef0, bet0)
 }
 
 function bottom_string_upd() {
     fix_mode = get_fix_mode()
 
-    if (fix_mode == 3 || fix_mode == 1)
+    if (fix_mode == 3 || fix_mode == 2)
         calc(coef1, bet1, coef0, bet0)
     else
-        calc_profit()
+        calc(coef0, bet0, coef1, bet1)
 }
 
 function get_fix_mode() {
