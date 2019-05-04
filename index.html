@@ -12,15 +12,15 @@
         <div class='cont'>
             <div class='coef-cont'>
                 <div class='label'>Coef</div>
-                <input class='coef field' autofocus autocomplete='off' type='text'/>
+                <input id='coef-field-1' class='coef field' autofocus autocomplete='off' type='text'/>
                 <br />
-                <input class='coef field' autocomplete='off' type='text'/>
+                <input id='coef-field-2' class='coef field' autocomplete='off' type='text'/>
             </div>
             <div class='bet-cont'>
                 <div class='label'>Bet</div>
-                <input class='bet field' autocomplete='off' type='text'/>
+                <input id='bet-filed-1' class='bet field' autocomplete='off' type='text'/>
                 <br />
-                <input class='bet field' autocomplete='off' type='text'/>
+                <input id='bet-filed-2' class='bet field' autocomplete='off' type='text'/>
             </div>
             <div class='profit-cont'>
                 <div class='label'>Profit</div>
@@ -44,4 +44,14 @@
             <span>%</span>
         </div>
     </body>
+
+      <script>
+        var url_string = window.location.href; //window.location.href
+        var url = new URL(url_string);
+        var c = url.searchParams.get('coefs');
+        document.getElementById('coef-field-1').value =url.searchParams.get('coef1');
+        document.getElementById('coef-field-2').value =url.searchParams.get('coef2');
+        document.getElementById('bet-filed-1').value =url.searchParams.get('sum1');
+        document.getElementById('bet-filed-2').value =url.searchParams.get('sum2');
+    </script>
 </html>
