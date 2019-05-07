@@ -34,10 +34,10 @@ function get_args() {
     var url_string = window.location.href
     var url = new URL(url_string)
     var c = url.searchParams.get('coefs')
-    document.getElementById('coef-field-1').value = url.searchParams.get('c1')
-    document.getElementById('coef-field-2').value = url.searchParams.get('c2')
-    document.getElementById('bet-filed-1').value = url.searchParams.get('b1')
-    document.getElementById('bet-filed-2').value = url.searchParams.get('b2')
+    coef0.value = url.searchParams.get('c1')
+    coef1.value = url.searchParams.get('c2')
+    bet0.value = url.searchParams.get('b1')
+    bet1.value = url.searchParams.get('b2')
 }
 
 function tabbed(ev) {
