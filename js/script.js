@@ -12,10 +12,10 @@ window.onload = () => {
     profit_percent_cont = document.getElementsByClassName('profit-percent-cont')[0]
 
     // Setup event listners
-    coef0.addEventListener('input', top_string_upd, true);
-    bet0.addEventListener('input', top_string_upd, true);
-    coef1.addEventListener('input', bottom_string_upd, true);
-    bet1.addEventListener('input', bottom_string_upd, true);
+    coef0.addEventListener('input', top_string_upd, true)
+    bet0.addEventListener('input', top_string_upd, true)
+    coef1.addEventListener('input', bottom_string_upd, true)
+    bet1.addEventListener('input', bottom_string_upd, true)
 
     // For profit percent calculation
     coef0.addEventListener('input', calc_profit_percent, true)
@@ -24,6 +24,20 @@ window.onload = () => {
     // For tabs
     for (i = 0; i < 4; i++)
         document.getElementsByClassName('field')[i].addEventListener('keydown', tabbed, false)
+
+    get_args()
+    calc(coef0, bet0, coef1, bet1)
+    calc(coef1, bet1, coef0, bet0)
+}
+
+function get_args() {
+    var url_string = window.location.href
+    var url = new URL(url_string)
+    var c = url.searchParams.get('coefs')
+    document.getElementById('coef-field-1').value = url.searchParams.get('c1')
+    document.getElementById('coef-field-2').value = url.searchParams.get('c2')
+    document.getElementById('bet-filed-1').value = url.searchParams.get('b1')
+    document.getElementById('bet-filed-2').value = url.searchParams.get('b2')
 }
 
 function tabbed(ev) {
