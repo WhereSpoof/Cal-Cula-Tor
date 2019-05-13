@@ -12,10 +12,10 @@ window.onload = () => {
     profit_percent_cont = document.getElementsByClassName('profit-percent-cont')[0]
 
     // Setup event listners
-    coef0.addEventListener('input', top_string_upd, true)
-    bet0.addEventListener('input', top_string_upd, true)
-    coef1.addEventListener('input', bottom_string_upd, true)
-    bet1.addEventListener('input', bottom_string_upd, true)
+    coef0.addEventListener('input', click_c1, true)
+    bet0.addEventListener('input', click_b1, true)
+    coef1.addEventListener('input', click_c2, true)
+    bet1.addEventListener('input', click_b2, true)
 
     // For profit percent calculation
     coef0.addEventListener('input', calc_profit_percent, true)
@@ -28,6 +28,42 @@ window.onload = () => {
     get_args()
     calc(coef0, bet0, coef1, bet1)
     calc(coef1, bet1, coef0, bet0)
+}
+
+function click_c1() {
+    fix_mode = get_fix_mode()
+
+    if (fix_mode == 3 || fix_mode == 1)
+        calc(coef0, bet0, coef1, bet1)
+    else
+        calc(coef1, bet1, coef0, bet0)
+}
+
+function click_c2() {
+    fix_mode = get_fix_mode()
+
+    if (fix_mode == 3 || fix_mode == 2)
+        calc(coef1, bet1, coef0, bet0)
+    else
+        calc(coef0, bet0, coef1, bet1)
+}
+
+function click_b1() {
+    fix_mode = get_fix_mode()
+
+    if (fix_mode == 3 || fix_mode == 1)
+        calc(coef0, bet0, coef1, bet1)
+    else
+        calc_profit()
+}
+
+function click_b2() {
+    fix_mode = get_fix_mode()
+
+    if (fix_mode == 3 || fix_mode == 2)
+        calc(coef1, bet1, coef0, bet0)
+    else
+        calc_profit()
 }
 
 function get_args() {
@@ -55,24 +91,6 @@ function tabbed(ev) {
 
     ev.preventDefault()
     return false
-}
-
-function top_string_upd() {
-    fix_mode = get_fix_mode()
-
-    if (fix_mode == 3 || fix_mode == 1)
-        calc(coef0, bet0, coef1, bet1)
-    else
-        calc(coef1, bet1, coef0, bet0)
-}
-
-function bottom_string_upd() {
-    fix_mode = get_fix_mode()
-
-    if (fix_mode == 3 || fix_mode == 2)
-        calc(coef1, bet1, coef0, bet0)
-    else
-        calc(coef0, bet0, coef1, bet1)
 }
 
 function get_fix_mode() {
