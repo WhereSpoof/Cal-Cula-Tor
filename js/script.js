@@ -1,58 +1,58 @@
-var coef0, coef1, bet0, bet1, profit0, profit1, profit_percent, profit_percent_cont
+var coef1, coef2, bet1, bet2, profit1, profit2, profit_percent, profit_percent_cont
 
 window.onload = () => {
     // Setup selectors
-    coef0 = document.getElementsByClassName('coef')[0]
-    bet0 = document.getElementsByClassName('bet')[0]
-    profit0 = document.getElementsByClassName('profit')[0]
-    coef1 = document.getElementsByClassName('coef')[1]
-    bet1 = document.getElementsByClassName('bet')[1]
-    profit1 = document.getElementsByClassName('profit')[1]
+    coef1 = document.getElementsByClassName('coef')[0]
+    bet1 = document.getElementsByClassName('bet')[0]
+    profit1 = document.getElementsByClassName('profit')[0]
+    coef2 = document.getElementsByClassName('coef')[1]
+    bet2 = document.getElementsByClassName('bet')[1]
+    profit2 = document.getElementsByClassName('profit')[1]
     profit_percent = document.getElementsByClassName('profit-percent')[0]
     profit_percent_cont = document.getElementsByClassName('profit-percent-cont')[0]
 
     // Setup event listners
-    coef0.addEventListener('input', click_c1, true)
-    bet0.addEventListener('input', click_b1, true)
-    coef1.addEventListener('input', click_c2, true)
-    bet1.addEventListener('input', click_b2, true)
+    coef1.addEventListener('input', click_c1, true)
+    bet1.addEventListener('input', click_b1, true)
+    coef2.addEventListener('input', click_c2, true)
+    bet2.addEventListener('input', click_b2, true)
 
     // For profit percent calculation
-    coef0.addEventListener('input', calc_profit_percent, true)
     coef1.addEventListener('input', calc_profit_percent, true)
+    coef2.addEventListener('input', calc_profit_percent, true)
 
     // For tabs
-    for (i = 0; i < 4; i++)
-        document.getElementsByClassName('field')[i].addEventListener('keydown', tabbed, false)
+    for (i = 0; i < 4; i++) document.getElementsByClassName('field')[i].addEventListener('keydown', tabbed, false)
 
+    // Set up from GET args
     get_args()
-    calc(coef0, bet0, coef1, bet1)
-    calc(coef1, bet1, coef0, bet0)
+    calc(coef1, bet1, coef2, bet2)
+    calc(coef2, bet2, coef1, bet1)
 }
 
 function click_c1() {
     fix_mode = get_fix_mode()
 
     if (fix_mode == 3 || fix_mode == 1)
-        calc(coef0, bet0, coef1, bet1)
+        calc(coef1, bet1, coef2, bet2)
     else
-        calc(coef1, bet1, coef0, bet0)
+        calc(coef2, bet2, coef1, bet1)
 }
 
 function click_c2() {
     fix_mode = get_fix_mode()
 
     if (fix_mode == 3 || fix_mode == 2)
-        calc(coef1, bet1, coef0, bet0)
+        calc(coef2, bet2, coef1, bet1)
     else
-        calc(coef0, bet0, coef1, bet1)
+        calc(coef1, bet1, coef2, bet2)
 }
 
 function click_b1() {
     fix_mode = get_fix_mode()
 
     if (fix_mode == 3 || fix_mode == 1)
-        calc(coef0, bet0, coef1, bet1)
+        calc(coef1, bet1, coef2, bet2)
     else
         calc_profit()
 }
@@ -61,7 +61,7 @@ function click_b2() {
     fix_mode = get_fix_mode()
 
     if (fix_mode == 3 || fix_mode == 2)
-        calc(coef1, bet1, coef0, bet0)
+        calc(coef2, bet2, coef1, bet1)
     else
         calc_profit()
 }
@@ -70,10 +70,10 @@ function get_args() {
     var url_string = window.location.href
     var url = new URL(url_string)
     var c = url.searchParams.get('coefs')
-    coef0.value = url.searchParams.get('c1')
-    coef1.value = url.searchParams.get('c2')
-    bet0.value = url.searchParams.get('b1')
-    bet1.value = url.searchParams.get('b2')
+    coef1.value = url.searchParams.get('c1')
+    coef2.value = url.searchParams.get('c2')
+    bet1.value = url.searchParams.get('b1')
+    bet2.value = url.searchParams.get('b2')
 }
 
 function tabbed(ev) {
@@ -103,8 +103,8 @@ function get_fix_mode() {
 }
 
 function calc_profit_percent() {
-    c1 = get_float(coef0)
-    c2 = get_float(coef1)
+    c1 = get_float(coef1)
+    c2 = get_float(coef2)
 
     v = 100
     l = 1 / c1 + 1 / c2
@@ -143,9 +143,9 @@ function calc(c0, b0, c1, b1) {
 }
 
 function calc_profit() {
-    bet_cost = get_float(bet0) + get_float(bet1)
-    profit0.innerHTML = ~~(get_float(coef0) * get_float(bet0) - bet_cost)
+    bet_cost = get_float(bet1) + get_float(bet2)
     profit1.innerHTML = ~~(get_float(coef1) * get_float(bet1) - bet_cost)
+    profit2.innerHTML = ~~(get_float(coef2) * get_float(bet2) - bet_cost)
 }
 
 function hybrid_round(num) {
