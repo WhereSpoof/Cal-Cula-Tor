@@ -176,22 +176,19 @@ function check_float(elem) {
 }
 
 function fork_to_copy_buffer() {
-    var coef1 = document.getElementsByClassName('coef field')[0].value
-    var coef2 = document.getElementsByClassName('coef field')[1].value
-    var bet1 = document.getElementsByClassName('bet field')[0].value
-    var bet2 = document.getElementsByClassName('bet field')[1].value
-    var profit1 = document.getElementsByClassName('profit')[0].value
-    vat profit2 = document.getElementsByClassName('profit')[1].value
+    bet_cost = get_float(bet1) + get_float(bet2)
+    var profit1 = ~~(get_float(coef1) * get_float(bet1) - bet_cost)
+    var profit2 = ~~(get_float(coef2) * get_float(bet2) - bet_cost)
     const str =
-    `${bet1} X ${coef1} --> ${profit1}
-    ${bet2} X ${coef2} --> ${profit2}`;
+    `${get_float(bet1)} X ${get_float(coef1)} --> ${profit1}
+    ${get_float(bet2)} X ${get_float(coef2)} --> ${profit2}`;
     var dummy = document.createElement("textarea");
     // to avoid breaking orgain page when copying more words
     // cant copy when adding below this code
     // dummy.style.display = 'none'
     document.body.appendChild(dummy);
     //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
-    dummy.value = text;
+    dummy.value = str;
     dummy.select();
     document.execCommand("copy");
     document.body.removeChild(dummy);
