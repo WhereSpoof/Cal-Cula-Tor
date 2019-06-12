@@ -174,3 +174,22 @@ function check_float(elem) {
     elem.value = num
     return num
 }
+
+function fork_to_copy_buffer() {
+    bet_cost = get_float(bet1) + get_float(bet2)
+    var profit1 = ~~(get_float(coef1) * get_float(bet1) - bet_cost)
+    var profit2 = ~~(get_float(coef2) * get_float(bet2) - bet_cost)
+    const str =
+    `${get_float(bet1)} X ${get_float(coef1)} --> ${profit1}
+    ${get_float(bet2)} X ${get_float(coef2)} --> ${profit2}`;
+    var dummy = document.createElement("textarea");
+    // to avoid breaking orgain page when copying more words
+    // cant copy when adding below this code
+    // dummy.style.display = 'none'
+    document.body.appendChild(dummy);
+    //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
+    dummy.value = str;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+}
