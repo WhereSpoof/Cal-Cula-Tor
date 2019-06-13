@@ -76,7 +76,7 @@ div.profit {
     border-width: 1px;
     border-color: gray;
     position: relative;
-    bottom: 3px;
+    bottom: 1px;
 }
 
 .copy-button:active {
