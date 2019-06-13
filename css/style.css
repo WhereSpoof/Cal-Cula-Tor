@@ -1,5 +1,11 @@
+html {
+    --font-family: 'Comfortaa';
+    /* --font-family: monospace; */
+    /* --font-family: system-ui; */
+}
+
 body {
-    font-family: 'Comfortaa';
+    font-family: var(--font-family);
     font-size: 20px;
     height: 100%;
     background: linear-gradient(45deg, #FFFDFD, #FDFDFF) no-repeat center center fixed;
@@ -10,31 +16,35 @@ body {
 }
 
 div.profit-percent-cont {
-    font-size: 20pt;
+    font-size: 23pt;
     font-weight: bold;
     position: absolute;
-    margin-top: 12%;
-    margin-left: 45%;
+    top: calc(45% - 100px);
+    left: calc(40% - 40px);
 }
 
 div.cont {
     font-size: 16pt;
     margin-top: 6%;
-    margin-left: 20%;
+    margin-left: 15%;
     float: none;
+}
+
+div.elem-cont {
+    float: left;
+    margin-right: calc(12% - 30px);
 }
 
 input[type="radio"] {
     display: inline;
     margin-bottom: 35px;
-
     border: 0px;
     width: 100%;
     height: 2em;
 }
 
 input.field[type="text"] {
-    font-family: 'Comfortaa';
+    font-family: var(--font-family);
     text-align: right;
     font-size: 20px;
     margin-top: 10px;
@@ -46,31 +56,9 @@ div.label {
     text-align: center;
 }
 
-div.coef-cont {
-    float: left;
-    margin-right: 130px;
-}
-
-input.coef {
-
-}
-
-div.bet-cont {
-    float: left;
-    margin-right: 130px;
-}
-
-input.bet {
-
-}
-
-div.profit-cont {
-    float: left;
-    margin-right: 130px;
-}
-
 div.fix-cont {
     float: left;
+    margin-right: 10px;
 }
 
 div.profit {
@@ -78,4 +66,19 @@ div.profit {
     vertical-align: bottom;
     text-align: right;
     line-height: 45px;
+}
+
+.copy-button {
+    float: left;
+    font-family: var(--font-family);
+    font-size: 0.75em;
+    background-color: white;
+    border-width: 1px;
+    border-color: gray;
+    position: relative;
+    bottom: 3px;
+}
+
+.copy-button:active {
+    background-color: black;
 }
