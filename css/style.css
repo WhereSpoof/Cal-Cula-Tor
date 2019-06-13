@@ -77,10 +77,10 @@ div.profit {
     border-color: gray;
     position: relative;
     bottom: 1px;
+    outline: none;
 }
 
 .copy-button:active {
     background-color: black;
     color: white;
-    outline: none;
 }
