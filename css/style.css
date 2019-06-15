@@ -1,14 +1,26 @@
 html {
-    --font-family: 'Comfortaa';
-    /* --font-family: monospace; */
+    /* --font-family: 'Comfortaa'; */
+    --font-family: monospace;
     /* --font-family: system-ui; */
+
+    --bg-color-1: #FFFDFD;
+    --bg-color-2: #FDFDFF;
+    --bg-color-3: black;
+    --color-1: grey;
+
+    --bg-color-1: #FFFDFD;
+    --bg-color-2: black;
+    --bg-color-3: black;
+    --color-1: grey;
+
+    
 }
 
 body {
     font-family: var(--font-family);
     font-size: 20px;
     height: 100%;
-    background: linear-gradient(45deg, #FFFDFD, #FDFDFF) no-repeat center center fixed;
+    background: linear-gradient(45deg, var(--bg-color-1), var(--bg-color-2)) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -72,15 +84,15 @@ div.profit {
     float: left;
     font-family: var(--font-family);
     font-size: 0.75em;
-    background-color: white;
+    background-color: var(--bg-color-1);
     border-width: 1px;
-    border-color: gray;
+    border-color: var(--color-1);
     position: relative;
     bottom: 1px;
     outline: none;
 }
 
 .copy-button:active {
-    background-color: black;
-    color: white;
+    background-color: var(--bg-color-3);
+    color: var(--bg-color-1);
 }

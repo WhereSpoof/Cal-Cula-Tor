@@ -181,7 +181,7 @@ function copy_fork_to_buffer() {
     var profit2 = ~~(get_float(coef2) * get_float(bet2) - bet_cost)
     const str =
     `${get_float(bet1)} * ${get_float(coef1)} --> ${profit1}
-    ${get_float(bet2)} * ${get_float(coef2)} --> ${profit2}`;
+     ${get_float(bet2)} * ${get_float(coef2)} --> ${profit2}`;
     var dummy = document.createElement("textarea");
     // to avoid breaking orgain page when copying more words
     // cant copy when adding below this code
