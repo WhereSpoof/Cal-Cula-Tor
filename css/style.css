@@ -89,7 +89,7 @@ div.profit {
     border-width: 1px;
     border-color: var(--color-1);
     position: relative;
-    bottom: 1px;
+    bottom: 4px;
     outline: none;
 }
 
