@@ -71,17 +71,22 @@ div.label {
 div.fix-cont {
     float: left;
     margin-right: 10px;
+    text-align: center;
 }
 
 div.profit {
     height: 30px;
     vertical-align: bottom;
-    text-align: right;
+    text-align: center;
     line-height: 45px;
 }
 
+.fix-cont .label {
+    text-align: left;
+}
+
 .copy-button {
-    color: var(--color-2)
+    color: var(--color-2);
     float: left;
     font-family: var(--font-family);
     font-size: 0.75em;
