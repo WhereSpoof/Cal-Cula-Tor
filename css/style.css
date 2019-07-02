@@ -31,7 +31,7 @@ div.profit-percent-cont {
     font-size: 23pt;
     font-weight: bold;
     position: absolute;
-    top: calc(45% - 100px);
+    top: calc(200px + 10%);
     left: calc(40% - 40px);
 }
 
@@ -48,6 +48,14 @@ div.elem-cont {
 }
 
 input[type="radio"] {
+    display: inline;
+    margin-bottom: 35px;
+    border: 0px;
+    width: 100%;
+    height: 2em;
+}
+
+input[type="checkbox"] {
     display: inline;
     margin-bottom: 35px;
     border: 0px;
@@ -83,6 +91,12 @@ div.profit {
 
 .fix-cont .label {
     text-align: left;
+}
+
+div.cur-cont {
+    float: left;
+    margin-right: 10px;
+    text-align: center;
 }
 
 .copy-button {

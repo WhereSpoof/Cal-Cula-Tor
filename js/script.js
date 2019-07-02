@@ -1,5 +1,7 @@
 var coef1, coef2, bet1, bet2, profit1, profit2, profit_percent, profit_percent_cont
 
+var currency = 63.31
+
 window.onload = () => {
     // Setup selectors
     coef1 = document.getElementsByClassName('coef')[0]
@@ -30,9 +32,55 @@ window.onload = () => {
     calc(coef2, bet2, coef1, bet1)
 }
 
+function get_b1() {
+    if (document.getElementsByClassName('cur-choice')[0].checked)
+        return get_int(bet1) * currency
+    return get_int(bet1)
+}
+
+function get_b2() {
+    if (document.getElementsByClassName('cur-choice')[1].checked)
+        return get_int(bet2) * currency
+    return get_int(bet2)
+}
+
+function set_p1(value) {
+    if (document.getElementsByClassName('cur-choice')[0].checked)
+        profit1.innerHTML = ~~(value / currency)
+    else
+        profit1.innerHTML = ~~value
+}
+
+function set_p2(value) {
+    if (document.getElementsByClassName('cur-choice')[1].checked)
+        profit2.innerHTML = ~~(value / currency)
+    else
+        profit2.innerHTML = ~~value
+}
+
+function set_b1(value) {
+    if (value < 1)
+        return
+
+    if (document.getElementsByClassName('cur-choice')[0].checked)
+        bet1.value = hybrid_round(value * currency)
+    else
+        bet1.value = hybrid_round(value)
+}
+
+function set_b2(value) {
+    if (value < 1)
+        return
+
+    if (document.getElementsByClassName('cur-choice')[1].checked)
+        bet2.value = hybrid_round(value * currency)
+    else
+        bet2.value = hybrid_round(value)
+}
+
 function click_c1() {
     fix_mode = get_fix_mode()
-
+    
     if (fix_mode == 3 || fix_mode == 1)
         calc(coef1, bet1, coef2, bet2)
     else
@@ -131,21 +179,29 @@ function calc_profit_percent() {
 }
 
 function calc(c0, b0, c1, b1) {
-    max_num = 1000000
+    b0v = b0 == bet1 ? get_b1() : get_b2()
+    c0v = get_float(c0)
+    c1v = get_float(c1)
+
+    max_num = 10000000
     if (get_int(b0) > max_num)
         b0.value = max_num
-    bet = get_float(c0) * get_int(b0) / get_float(c1)
+    bet = c0v * b0v / c1v
     if (isNaN(bet))
         return
-    b1.value = hybrid_round(bet)
+
+    if (b0 == bet1)
+        set_b2(bet)
+    else
+        set_b1(bet)
 
     calc_profit()
 }
 
 function calc_profit() {
-    bet_cost = get_float(bet1) + get_float(bet2)
-    profit1.innerHTML = ~~(get_float(coef1) * get_float(bet1) - bet_cost)
-    profit2.innerHTML = ~~(get_float(coef2) * get_float(bet2) - bet_cost)
+    bet_cost = get_b1() + get_b2()
+    set_p1(get_float(coef1) * get_b1() - bet_cost)
+    set_p2(get_float(coef2) * get_b2() - bet_cost)
 }
 
 function hybrid_round(num) {
