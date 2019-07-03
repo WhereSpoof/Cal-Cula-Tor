@@ -63,7 +63,7 @@ function set_b1(value) {
         return
 
     if (document.getElementsByClassName('cur-choice')[0].checked)
-        bet1.value = hybrid_round(value * currency)
+        bet1.value = hybrid_round(value / currency)
     else
         bet1.value = hybrid_round(value)
 }
@@ -73,7 +73,7 @@ function set_b2(value) {
         return
 
     if (document.getElementsByClassName('cur-choice')[1].checked)
-        bet2.value = hybrid_round(value * currency)
+        bet2.value = hybrid_round(value / currency)
     else
         bet2.value = hybrid_round(value)
 }
