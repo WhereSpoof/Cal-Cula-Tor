@@ -238,12 +238,10 @@ function check_float(elem) {
 }
 
 function copy_fork_to_buffer() {
-    bet_cost = get_float(bet1) + get_float(bet2)
-    var profit1 = ~~(get_float(coef1) * get_float(bet1) - bet_cost)
-    var profit2 = ~~(get_float(coef2) * get_float(bet2) - bet_cost)
+    bet_cost = get_b1() + get_b2()
     const str =
-    `${get_float(bet1)} * ${get_float(coef1)} --> ${profit1}
-     ${get_float(bet2)} * ${get_float(coef2)} --> ${profit2}`;
+    `${get_b1()} * ${get_float(coef1)} --> ${profit1.innerHTML}
+     ${get_b2()} * ${get_float(coef2)} --> ${profit2.innerHTML}`;
     var dummy = document.createElement("textarea");
     // to avoid breaking orgain page when copying more words
     // cant copy when adding below this code
