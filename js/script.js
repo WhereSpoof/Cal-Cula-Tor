@@ -1,6 +1,9 @@
 var coef1, coef2, bet1, bet2, profit1, profit2, profit_percent, profit_percent_cont
 
-var currency = 63.31
+var currency = [1, 63.47]
+
+var mult1 = currency[0]
+var mult2 = currency[0]
 
 window.onload = () => {
     // Setup selectors
@@ -23,6 +26,9 @@ window.onload = () => {
     coef1.addEventListener('input', calc_profit_percent, true)
     coef2.addEventListener('input', calc_profit_percent, true)
 
+    document.getElementsByClassName('cur-choice')[0].addEventListener('input', set_m1, true)
+    document.getElementsByClassName('cur-choice')[1].addEventListener('input', set_m2, true)
+
     // For tabs
     for (i = 0; i < 4; i++) document.getElementsByClassName('field')[i].addEventListener('keydown', tabbed, false)
 
@@ -32,50 +38,50 @@ window.onload = () => {
     calc(coef2, bet2, coef1, bet1)
 }
 
-function get_b1() {
+function set_m1() {
     if (document.getElementsByClassName('cur-choice')[0].checked)
-        return get_int(bet1) * currency
-    return get_int(bet1)
+        mult1 = currency[1]
+    else
+        mult1 = currency[0]
+    calc(coef1, bet1, coef2, bet2)
+}
+
+function set_m2() {
+    if (document.getElementsByClassName('cur-choice')[1].checked)
+        mult2 = currency[1]
+    else
+        mult2 = currency[0]
+    calc(coef2, bet2, coef1, bet1)
+}
+
+function get_b1() {
+    return get_int(bet1) * mult1
 }
 
 function get_b2() {
-    if (document.getElementsByClassName('cur-choice')[1].checked)
-        return get_int(bet2) * currency
-    return get_int(bet2)
+    return get_int(bet2) * mult2
 }
 
 function set_p1(value) {
-    if (document.getElementsByClassName('cur-choice')[0].checked)
-        profit1.innerHTML = ~~(value / currency)
-    else
-        profit1.innerHTML = ~~value
+    profit1.innerHTML = ~~(value / mult1)
 }
 
 function set_p2(value) {
-    if (document.getElementsByClassName('cur-choice')[1].checked)
-        profit2.innerHTML = ~~(value / currency)
-    else
-        profit2.innerHTML = ~~value
+    profit2.innerHTML = ~~(value / mult2)
 }
 
 function set_b1(value) {
     if (value < 1)
         return
 
-    if (document.getElementsByClassName('cur-choice')[0].checked)
-        bet1.value = hybrid_round(value / currency)
-    else
-        bet1.value = hybrid_round(value)
+    bet1.value = hybrid_round(value / mult1)
 }
 
 function set_b2(value) {
     if (value < 1)
         return
 
-    if (document.getElementsByClassName('cur-choice')[1].checked)
-        bet2.value = hybrid_round(value / currency)
-    else
-        bet2.value = hybrid_round(value)
+    bet2.value = hybrid_round(value / mult2)
 }
 
 function click_c1() {

@@ -108,7 +108,7 @@ div.cur-cont {
     border-width: 1px;
     border-color: var(--color-1);
     position: relative;
-    bottom: 4px;
+    bottom: 3px;
     outline: none;
 }
 
