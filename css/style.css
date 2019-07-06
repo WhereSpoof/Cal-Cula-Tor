@@ -13,6 +13,9 @@ html {
     /* --bg-color-1: #000000; */
     /* --bg-color-2: #222222; */
     /* --bg-color-3: rgb(49, 40, 40); */
+
+    /* background-color: #E3E3E3; */
+    /* filter: invert(1) hue-rotate(210deg); */
 }
 
 body {
