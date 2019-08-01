@@ -213,7 +213,7 @@ function calc_profit() {
 function hybrid_round(num) {
     num = ~~num
     size = num.toString().length
-    floor_to_arr = [1, 1, 5, 10, 50, 100, 1000, 10000]
+    floor_to_arr = [1, 1, 1, 5, 10, 50, 500, 10000]
     to = floor_to_arr[size]
     num = round_to(num, to)
     return num;
