@@ -1,6 +1,6 @@
 var coef1, coef2, bet1, bet2, profit1, profit2, profit_percent, profit_percent_cont
 
-var currency = [1, 64.7]
+var currency = [1, 65.26]
 
 var mult1 = currency[0]
 var mult2 = currency[0]
