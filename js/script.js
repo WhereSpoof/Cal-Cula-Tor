@@ -34,6 +34,7 @@ window.onload = () => {
 
     // Set up from GET args
     get_args()
+    calc_profit_percent()
     calc(coef1, bet1, coef2, bet2)
     calc(coef2, bet2, coef1, bet1)
 }
