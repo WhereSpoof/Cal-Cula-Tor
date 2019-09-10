@@ -89,29 +89,21 @@ function set_b2(value) {
 
 function click_c1() {
     hidden_fix = 1
-    fix_mode = get_fix_mode()
-    
     high_calc()
 }
 
 function click_c2() {
     hidden_fix = 2
-    fix_mode = get_fix_mode()
-
     high_calc()
 }
 
 function click_b1() {
     hidden_fix = 1
-    fix_mode = get_fix_mode()
-
     high_calc()
 }
 
 function click_b2() {
     hidden_fix = 2
-    fix_mode = get_fix_mode()
-
     high_calc()
 }
 
@@ -142,15 +134,6 @@ function tabbed(ev) {
     return false
 }
 
-function get_fix_mode() {
-    if (document.getElementsByClassName('fix-choice')[0].checked)
-        return 1
-    if (document.getElementsByClassName('fix-choice')[1].checked)
-        return 2
-    if (document.getElementsByClassName('fix-choice')[2].checked)
-        return hidden_fix
-}
-
 function calc_profit_percent() {
     c1 = get_float(coef1)
     c2 = get_float(coef2)
@@ -179,13 +162,32 @@ function calc_profit_percent() {
     profit_percent.innerHTML = p
 }
 
+function get_fix_mode() {
+    if (document.getElementsByClassName('fix-choice')[0].checked)
+        return 1
+    if (document.getElementsByClassName('fix-choice')[1].checked)
+        return 2
+    if (document.getElementsByClassName('fix-choice')[2].checked)
+        return 3
+}
+
 function high_calc() {
     fix_mode = get_fix_mode()
 
-    if (fix_mode == 1)
+    if (fix_mode === 3)
+        if (hidden_fix === 1)
+            calc(coef1, bet1, coef2, bet2)    
+        else if (hidden_fix === 2)
+            calc(coef2, bet2, coef1, bet1)
+    
+    if (fix_mode == 1 && hidden_fix == 1)
         calc(coef1, bet1, coef2, bet2)
-    else if (fix_mode == 2)
+    else if (fix_mode == 2 && hidden_fix == 1)
         calc(coef2, bet2, coef1, bet1)
+    else if (fix_mode == 1 && hidden_fix == 2)
+        calc_profit()
+    else if (fix_mode == 2 && hidden_fix == 1)
+        calc_profit()
 }
 
 function calc(c0, b0, c1, b1) {
