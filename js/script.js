@@ -1,4 +1,4 @@
-var coef1, coef2, bet1, bet2, profit1, profit2, profit_percent, profit_percent_cont
+var coef1, coef2, bet1, bet2, profit1, profit2, profit_percent, profit_percent_cont, hidden_fix
 
 var currency = [1, 65.5]
 
@@ -44,7 +44,8 @@ function set_m1() {
         mult1 = currency[1]
     else
         mult1 = currency[0]
-    calc(coef1, bet1, coef2, bet2)
+    
+    high_calc()
 }
 
 function set_m2() {
@@ -52,7 +53,8 @@ function set_m2() {
         mult2 = currency[1]
     else
         mult2 = currency[0]
-    calc(coef2, bet2, coef1, bet1)
+    
+    high_calc()
 }
 
 function get_b1() {
@@ -86,39 +88,31 @@ function set_b2(value) {
 }
 
 function click_c1() {
+    hidden_fix = 1
     fix_mode = get_fix_mode()
     
-    if (fix_mode == 3 || fix_mode == 1)
-        calc(coef1, bet1, coef2, bet2)
-    else
-        calc(coef2, bet2, coef1, bet1)
+    high_calc()
 }
 
 function click_c2() {
+    hidden_fix = 2
     fix_mode = get_fix_mode()
 
-    if (fix_mode == 3 || fix_mode == 2)
-        calc(coef2, bet2, coef1, bet1)
-    else
-        calc(coef1, bet1, coef2, bet2)
+    high_calc()
 }
 
 function click_b1() {
+    hidden_fix = 1
     fix_mode = get_fix_mode()
 
-    if (fix_mode == 3 || fix_mode == 1)
-        calc(coef1, bet1, coef2, bet2)
-    else
-        calc_profit()
+    high_calc()
 }
 
 function click_b2() {
+    hidden_fix = 2
     fix_mode = get_fix_mode()
 
-    if (fix_mode == 3 || fix_mode == 2)
-        calc(coef2, bet2, coef1, bet1)
-    else
-        calc_profit()
+    high_calc()
 }
 
 function get_args() {
@@ -154,7 +148,7 @@ function get_fix_mode() {
     if (document.getElementsByClassName('fix-choice')[1].checked)
         return 2
     if (document.getElementsByClassName('fix-choice')[2].checked)
-        return 3
+        return hidden_fix
 }
 
 function calc_profit_percent() {
@@ -183,6 +177,15 @@ function calc_profit_percent() {
     }
 
     profit_percent.innerHTML = p
+}
+
+function high_calc() {
+    fix_mode = get_fix_mode()
+
+    if (fix_mode == 1)
+        calc(coef1, bet1, coef2, bet2)
+    else if (fix_mode == 2)
+        calc(coef2, bet2, coef1, bet1)
 }
 
 function calc(c0, b0, c1, b1) {
