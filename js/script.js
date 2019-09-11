@@ -102,7 +102,7 @@ function click_b1() {
     high_calc()
 }
 
-function click_b2() {
+function click_b2() {   
     hidden_fix = 2
     high_calc()
 }
@@ -110,7 +110,6 @@ function click_b2() {
 function get_args() {
     var url_string = window.location.href
     var url = new URL(url_string)
-    var c = url.searchParams.get('coefs')
     coef1.value = url.searchParams.get('c1')
     coef2.value = url.searchParams.get('c2')
     bet1.value = url.searchParams.get('b1')
@@ -173,21 +172,24 @@ function get_fix_mode() {
 
 function high_calc() {
     fix_mode = get_fix_mode()
-
+    
+    if (fix_mode === 1)
+        if (hidden_fix === 1)
+            calc(coef1, bet1, coef2, bet2)    
+        else if (hidden_fix === 2)
+            calc_profit()
+    
+    if (fix_mode === 2)
+        if (hidden_fix === 2)
+            calc(coef2, bet2, coef1, bet1)
+        else if (hidden_fix === 1)
+            calc_profit()
+    
     if (fix_mode === 3)
         if (hidden_fix === 1)
             calc(coef1, bet1, coef2, bet2)    
         else if (hidden_fix === 2)
             calc(coef2, bet2, coef1, bet1)
-    
-    if (fix_mode == 1 && hidden_fix == 1)
-        calc(coef1, bet1, coef2, bet2)
-    else if (fix_mode == 2 && hidden_fix == 1)
-        calc(coef2, bet2, coef1, bet1)
-    else if (fix_mode == 1 && hidden_fix == 2)
-        calc_profit()
-    else if (fix_mode == 2 && hidden_fix == 1)
-        calc_profit()
 }
 
 function calc(c0, b0, c1, b1) {
