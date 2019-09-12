@@ -31,23 +31,26 @@ body {
 }
 
 div.profit-percent-cont {
-    font-size: 23pt;
-    font-weight: bold;
+    font-size: 24pt;
     position: absolute;
-    top: calc(200px + 10%);
+    top: calc(200px + 12%);
     left: calc(40% - 40px);
 }
 
 div.cont {
     font-size: 16pt;
-    margin-top: 6%;
+    margin-top: 7%;
     margin-left: 15%;
     float: none;
 }
 
 div.elem-cont {
     float: left;
-    margin-right: calc(12% - 30px);
+    margin-right: calc(12% - 36px);
+}
+
+.cur-cont .label {
+    width: 1.1em;
 }
 
 input[type="radio"] {

@@ -1,9 +1,9 @@
 var coef1, coef2, bet1, bet2, profit1, profit2, profit_percent, profit_percent_cont, hidden_fix
 
-var currency = [1, 65.5]
+var currency = [1, 65, 71.6]
 
-var mult1 = currency[0]
-var mult2 = currency[0]
+var mults = [currency[0], currency[0]]
+
 
 window.onload = () => {
     // Setup selectors
@@ -17,17 +17,19 @@ window.onload = () => {
     profit_percent_cont = document.getElementsByClassName('profit-percent-cont')[0]
 
     // Setup event listners
-    coef1.addEventListener('input', click_c1, true)
-    bet1.addEventListener('input', click_b1, true)
-    coef2.addEventListener('input', click_c2, true)
-    bet2.addEventListener('input', click_b2, true)
+    coef1.addEventListener('input', () => { click(1) })
+    bet1.addEventListener('input', () => { click(1) })
+    coef2.addEventListener('input', () => { click(2) })
+    bet2.addEventListener('input', () => { click(2) })
 
     // For profit percent calculation
     coef1.addEventListener('input', calc_profit_percent, true)
     coef2.addEventListener('input', calc_profit_percent, true)
 
-    document.getElementsByClassName('cur-choice')[0].addEventListener('input', set_m1, true)
-    document.getElementsByClassName('cur-choice')[1].addEventListener('input', set_m2, true)
+    document.getElementsByClassName('cur-choice')[0].addEventListener('input', () => { set_m(1, 0, 0) })
+    document.getElementsByClassName('cur-choice')[1].addEventListener('input', () => { set_m(1, 1, 1) })
+    document.getElementsByClassName('cur-choice')[2].addEventListener('input', () => { set_m(2, 2, 0) })
+    document.getElementsByClassName('cur-choice')[3].addEventListener('input', () => { set_m(2, 3, 1) })
 
     // For tabs
     for (i = 0; i < 4; i++) document.getElementsByClassName('field')[i].addEventListener('keydown', tabbed, false)
@@ -39,71 +41,47 @@ window.onload = () => {
     calc(coef2, bet2, coef1, bet1)
 }
 
-function set_m1() {
-    if (document.getElementsByClassName('cur-choice')[0].checked)
-        mult1 = currency[1]
+function set_m(pos, index, multi) {
+    if (document.getElementsByClassName('cur-choice')[index].checked)
+        mults[multi] = currency[pos]
     else
-        mult1 = currency[0]
-    
-    high_calc()
-}
-
-function set_m2() {
-    if (document.getElementsByClassName('cur-choice')[1].checked)
-        mult2 = currency[1]
-    else
-        mult2 = currency[0]
+        mults[multi] = currency[0]
     
     high_calc()
 }
 
 function get_b1() {
-    return get_int(bet1) * mult1
+    return get_int(bet1) * mults[0]
 }
 
 function get_b2() {
-    return get_int(bet2) * mult2
+    return get_int(bet2) * mults[1]
 }
 
 function set_p1(value) {
-    profit1.innerHTML = ~~(value / mult1)
+    profit1.innerHTML = ~~(value / mults[0])
 }
 
 function set_p2(value) {
-    profit2.innerHTML = ~~(value / mult2)
+    profit2.innerHTML = ~~(value / mults[1])
 }
 
 function set_b1(value) {
     if (value < 1)
         return
 
-    bet1.value = hybrid_round(value / mult1)
+    bet1.value = hybrid_round(value / mults[0])
 }
 
 function set_b2(value) {
     if (value < 1)
         return
 
-    bet2.value = hybrid_round(value / mult2)
+    bet2.value = hybrid_round(value / mults[1])
 }
 
-function click_c1() {
-    hidden_fix = 1
-    high_calc()
-}
-
-function click_c2() {
-    hidden_fix = 2
-    high_calc()
-}
-
-function click_b1() {
-    hidden_fix = 1
-    high_calc()
-}
-
-function click_b2() {   
-    hidden_fix = 2
+function click(value) {
+    hidden_fix = value
     high_calc()
 }
 
