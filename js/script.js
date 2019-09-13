@@ -17,22 +17,23 @@ window.onload = () => {
     profit_percent_cont = document.getElementsByClassName('profit-percent-cont')[0]
 
     // Setup event listners
-    coef1.addEventListener('input', () => { click(1) })
+    coef1.addEventListener('input', () => { click(1, true) })
     bet1.addEventListener('input', () => { click(1) })
-    coef2.addEventListener('input', () => { click(2) })
+    coef2.addEventListener('input', () => { click(2, true) })
     bet2.addEventListener('input', () => { click(2) })
 
     // For profit percent calculation
-    coef1.addEventListener('input', calc_profit_percent, true)
-    coef2.addEventListener('input', calc_profit_percent, true)
+    coef1.addEventListener('input', calc_profit_percent)
+    coef2.addEventListener('input', calc_profit_percent)
 
-    document.getElementsByClassName('cur-choice')[0].addEventListener('input', () => { set_m(1, 0, 0) })
-    document.getElementsByClassName('cur-choice')[1].addEventListener('input', () => { set_m(1, 1, 1) })
-    document.getElementsByClassName('cur-choice')[2].addEventListener('input', () => { set_m(2, 2, 0) })
-    document.getElementsByClassName('cur-choice')[3].addEventListener('input', () => { set_m(2, 3, 1) })
+    // Currency selectors
+    document.getElementsByClassName('cur-choice')[0].addEventListener('input', () => { set_mult(1, 0, 0) })
+    document.getElementsByClassName('cur-choice')[1].addEventListener('input', () => { set_mult(1, 1, 1) })
+    document.getElementsByClassName('cur-choice')[2].addEventListener('input', () => { set_mult(2, 2, 0) })
+    document.getElementsByClassName('cur-choice')[3].addEventListener('input', () => { set_mult(2, 3, 1) })
 
     // For tabs
-    for (i = 0; i < 4; i++) document.getElementsByClassName('field')[i].addEventListener('keydown', tabbed, false)
+    for (i = 0; i < 4; i++) document.getElementsByClassName('field')[i].addEventListener('keydown', tab_handle)
 
     // Set up from GET args
     get_args()
@@ -41,48 +42,41 @@ window.onload = () => {
     calc(coef2, bet2, coef1, bet1)
 }
 
-function set_m(pos, index, multi) {
+function set_mult(pos, index, multi) {
     if (document.getElementsByClassName('cur-choice')[index].checked)
         mults[multi] = currency[pos]
     else
         mults[multi] = currency[0]
     
-    high_calc()
+    high_calc(true)
 }
 
-function get_b1() {
-    return get_int(bet1) * mults[0]
+function set_profit(index, value) {
+    if (index === 1) 
+        profit1.innerHTML = ~~(value / mults[0])
+    else if (index === 2)
+        profit2.innerHTML = ~~(value / mults[1])
 }
 
-function get_b2() {
-    return get_int(bet2) * mults[1]
+function set_bet(index, value) {
+    if (value < 1) return
+
+    if (index === 1)
+        bet1.value = hybrid_round(value / mults[0])    
+    else if (index === 2)
+        bet2.value = hybrid_round(value / mults[1])
 }
 
-function set_p1(value) {
-    profit1.innerHTML = ~~(value / mults[0])
+function get_bet(index) {
+    if (index === 1)
+        return get_int(bet1) * mults[0]
+    else if (index === 2)
+        return get_int(bet2) * mults[1]    
 }
 
-function set_p2(value) {
-    profit2.innerHTML = ~~(value / mults[1])
-}
-
-function set_b1(value) {
-    if (value < 1)
-        return
-
-    bet1.value = hybrid_round(value / mults[0])
-}
-
-function set_b2(value) {
-    if (value < 1)
-        return
-
-    bet2.value = hybrid_round(value / mults[1])
-}
-
-function click(value) {
+function click(value, is_fix_a_priority = false) {
     hidden_fix = value
-    high_calc()
+    high_calc(is_fix_a_priority)
 }
 
 function get_args() {
@@ -94,7 +88,7 @@ function get_args() {
     bet2.value = url.searchParams.get('b2')
 }
 
-function tabbed(ev) {
+function tab_handle(ev) {
     if (ev.key != 'Tab')
         return true
 
@@ -148,30 +142,30 @@ function get_fix_mode() {
         return 3
 }
 
-function high_calc() {
+function high_calc(is_fix_a_priority = false) {
     fix_mode = get_fix_mode()
-    
-    if (fix_mode === 1)
-        if (hidden_fix === 1)
-            calc(coef1, bet1, coef2, bet2)    
-        else if (hidden_fix === 2)
-            calc_profit()
-    
-    if (fix_mode === 2)
-        if (hidden_fix === 2)
-            calc(coef2, bet2, coef1, bet1)
-        else if (hidden_fix === 1)
-            calc_profit()
-    
-    if (fix_mode === 3)
-        if (hidden_fix === 1)
-            calc(coef1, bet1, coef2, bet2)    
-        else if (hidden_fix === 2)
-            calc(coef2, bet2, coef1, bet1)
+
+    if (is_fix_a_priority) {
+        if (fix_mode === 1) calc(coef1, bet1, coef2, bet2)
+        if (fix_mode === 2) calc(coef2, bet2, coef1, bet1)
+        if (fix_mode === 3) calc(coef1, bet1, coef2, bet2)
+    } else {
+        if (fix_mode === 1)
+            if (hidden_fix === 1) calc(coef1, bet1, coef2, bet2)
+            else if (hidden_fix === 2) calc_profit()
+        
+        if (fix_mode === 2)
+            if (hidden_fix === 2) calc(coef2, bet2, coef1, bet1)
+            else if (hidden_fix === 1) calc_profit()
+        
+        if (fix_mode === 3)
+            if (hidden_fix === 1) calc(coef1, bet1, coef2, bet2)
+            else if (hidden_fix === 2) calc(coef2, bet2, coef1, bet1)
+    }
 }
 
 function calc(c0, b0, c1, b1) {
-    b0v = b0 == bet1 ? get_b1() : get_b2()
+    b0v = b0 == bet1 ? get_bet(1) : get_bet(2)
     c0v = get_float(c0)
     c1v = get_float(c1)
 
@@ -183,17 +177,17 @@ function calc(c0, b0, c1, b1) {
         return
 
     if (b0 == bet1)
-        set_b2(bet)
+        set_bet(2, bet)
     else
-        set_b1(bet)
+        set_bet(1, bet)
 
     calc_profit()
 }
 
 function calc_profit() {
-    bet_cost = get_b1() + get_b2()
-    set_p1(get_float(coef1) * get_b1() - bet_cost)
-    set_p2(get_float(coef2) * get_b2() - bet_cost)
+    bet_cost = get_bet(1) + get_bet(2)
+    set_profit(1, get_float(coef1) * get_bet(1) - bet_cost)
+    set_profit(2, get_float(coef2) * get_bet(2) - bet_cost)
 }
 
 function hybrid_round(num) {
@@ -224,10 +218,10 @@ function check_float(elem) {
 }
 
 function copy_fork_to_buffer() {
-    bet_cost = get_b1() + get_b2()
+    bet_cost = get_bet(1) + get_bet(2)
     const str =
-    `${get_b1()} * ${get_float(coef1)} --> ${profit1.innerHTML}
-     ${get_b2()} * ${get_float(coef2)} --> ${profit2.innerHTML}`;
+    `${get_bet(1)} * ${get_float(coef1)} --> ${profit1.innerHTML}
+     ${get_bet(2)} * ${get_float(coef2)} --> ${profit2.innerHTML}`;
     var dummy = document.createElement("textarea");
     // to avoid breaking orgain page when copying more words
     // cant copy when adding below this code
