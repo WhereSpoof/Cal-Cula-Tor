@@ -6,7 +6,7 @@ VAR_NAME: str = 'var currency ='
 
 
 def get_by_rates(key, rates):
-    return '%.3f' % (1 / rates[key])
+    return '%.4f' % (1 / rates[key])
 
 
 def main():
