@@ -1,9 +1,9 @@
 html {
     --font-family: 'Comfortaa';
     /* fonts antialiasing */
-    font-smooth: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    /* font-smooth: auto; */
+    /* -webkit-font-smoothing: antialiased; */
+    /* -moz-osx-font-smoothing: grayscale; */
 
     /* --font-family: monospace; */
     /* --font-family: system-ui; */
