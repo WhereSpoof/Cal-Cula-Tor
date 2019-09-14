@@ -146,7 +146,8 @@ function high_calc(is_fix_a_priority = false) {
     if (is_fix_a_priority) {
         if (fix_mode === 1) calc(coef1, bet1, coef2, bet2)
         if (fix_mode === 2) calc(coef2, bet2, coef1, bet1)
-        if (fix_mode === 3) calc(coef1, bet1, coef2, bet2)
+        if (fix_mode === 3 && hidden_fix == 1) calc(coef1, bet1, coef2, bet2)
+        if (fix_mode === 3 && hidden_fix == 2) calc(coef2, bet2, coef1, bet1)
     } else {
         if (fix_mode === 1)
             if (hidden_fix === 1) calc(coef1, bet1, coef2, bet2)
