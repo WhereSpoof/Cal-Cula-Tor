@@ -24,6 +24,7 @@ html {
 }
 
 #bottom-bar {
+    color: #444444;
     position: absolute;
     bottom: 0%;
     left: 10px;
