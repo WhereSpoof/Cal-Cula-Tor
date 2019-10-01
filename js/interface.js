@@ -1,9 +1,11 @@
 currency_names = [null, '$', '€']
 
-s = ''
+function set_curr() {
+    s = ''
 
-for (i = 1; i < 3; i++)
-    s += currency_names[i] + ' ' + currency[i] + '  '
+    for (i = 1; i < 3; i++)
+        s += currency_names[i] + ' ' + currency[i] + '  '
 
-console.log(s)
-document.getElementById('bottom-bar').innerText = s
+    console.log(s)
+    document.getElementById('bottom-bar').innerText = s
+}
