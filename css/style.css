@@ -104,7 +104,8 @@ div.fix-cont {
 }
 
 div.profit {
-    height: 30px;
+    width: 120px;
+    height: 50px;
     vertical-align: bottom;
     text-align: center;
     line-height: 45px;

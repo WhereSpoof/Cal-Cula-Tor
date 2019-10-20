@@ -1,3 +1,59 @@
 @media screen and (max-width: 1000px) {
+    div.cont {
+        margin-top: 10px;
+        margin-left: 5%;
+        float: none;
+        font-size: 1em;
+    }
+
+    input {
+        float: left;
+        margin-right: 10px;
+    }
+
+    div.elem-cont {
+        margin-bottom: 0px;
+        float: top;
+        width: 95%;
+    }
+
+    div.profit {
+        float: left;
+        width: 47.5%;
+    }
+
+    div.profit-percent-cont {
+        font-size: 25pt;
+        position: absolute;
+        top: calc(100% - 40px);
+        left: calc(85% - 60px);
+    }
+
+    input.field[type="text"] {
+        width: 40%;
+    }
+
+    input[type="radio"] {
+        float: left;
+        display: inline;
+        border: 0px;
+        width: 10%;
+        height: 2em;
+    }
     
+    input[type="checkbox"] {
+        float: left;
+        display: inline;
+        border: 0px;
+        width: 10%;
+        height: 2em;
+    }
+
+    #auto-label {
+        visibility: hidden;
+    }
+
+    button.copy-button {
+        visibility: hidden;
+    }
 }
