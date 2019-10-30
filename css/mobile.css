@@ -1,9 +1,9 @@
-@media screen and (max-width: 0px) {
+@media screen and (max-width: 1000px) {
     div.cont {
         margin-top: 10px;
         margin-left: 5%;
         float: none;
-        font-size: 1em;
+        font-size: 2.5em;
     }
 
     input {
@@ -31,6 +31,7 @@
 
     input.field[type="text"] {
         width: 40%;
+        font-size: 1.8em;
     }
 
     input[type="radio"] {
