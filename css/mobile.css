@@ -18,15 +18,16 @@
     }
 
     div.profit {
+        text-align: center;
         float: left;
-        width: 47.5%;
+        width: 45%;
     }
 
     div.profit-percent-cont {
         font-size: 2em;
         position: absolute;
         top: calc(100% - 40px);
-        left: calc(100% - 2em);
+        left: calc(100% - 3em);
     }
 
     input.field[type="text"] {
