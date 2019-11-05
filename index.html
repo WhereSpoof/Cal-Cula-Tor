@@ -1,68 +1,138 @@
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <title>Calc</title>
-        <link rel='shortcut icon' href='res/img/logo.png' />
-        <link rel='stylesheet' type='text/css' href='res/fonts/Comfortaa.css' />
-        <link rel='stylesheet' type='text/css' href='css/style.css' />
-        <link rel='stylesheet' type='text/css' href='css/mobile.css' />
-        <script charset='utf-8' type='text/javascript' src='js/curr.js'></script>
-        <script charset='utf-8' type='text/javascript' src='js/script.js'></script>
-        <script defer charset='utf-8' type='text/javascript' src='js/interface.js'></script>
-        <script defer charset='utf-8' type='text/javascript' src='js/curr_upd.js'></script>
-        
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147517950-1"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'UA-147517950-1');
-        </script>
-    </head>
 
-    <body>
-        <div class='cont'>
-            <div class='coef-cont elem-cont'>
-                <div class='label'>Coef</div>
-                <input class='coef field' autocomplete='off' type='text' style='display: block' autofocus/>
-                <input class='coef field' autocomplete='off' type='text'/>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calc</title>
+    <link rel='shortcut icon' href='res/img/shortcut.png' />
+    <link rel='stylesheet' type='text/css' href='res/fonts/Comfortaa.css' />
+    <link rel='stylesheet' type='text/css' href='css/style.css' />
+    <link rel='stylesheet' type='text/css' href='css/mobile.css' />
+    <script charset='utf-8' type='text/javascript' src='js/curr.js'></script>
+    <script charset='utf-8' type='text/javascript' src='js/script.js'></script>
+    <script defer charset='utf-8' type='text/javascript' src='js/interface.js'></script>
+    <script defer charset='utf-8' type='text/javascript' src='js/curr_upd.js'></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147517950-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-147517950-1');
+    </script>
+</head>
+
+<body>
+    <svg style="display: none;">
+        <symbol id="copy" viewBox="0 0 448 512">
+            <g>
+                <path
+                    d="M433.941 65.941l-51.882-51.882A48 48 0 0 0 348.118 0H176c-26.51 0-48 21.49-48 48v48H48c-26.51 0-48 21.49-48 48v320c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48v-48h80c26.51 0 48-21.49 48-48V99.882a48 48 0 0 0-14.059-33.941zM266 464H54a6 6 0 0 1-6-6V150a6 6 0 0 1 6-6h74v224c0 26.51 21.49 48 48 48h96v42a6 6 0 0 1-6 6zm128-96H182a6 6 0 0 1-6-6V54a6 6 0 0 1 6-6h106v88c0 13.255 10.745 24 24 24h88v202a6 6 0 0 1-6 6zm6-256h-64V48h9.632c1.591 0 3.117.632 4.243 1.757l48.368 48.368a6 6 0 0 1 1.757 4.243V112z" />
+            </g>
+        </symbol>
+    </svg>
+    <div class='cont'>
+
+        <header class="header">
+            <div class="logo">
+                <img src="res/img/logo.jpg" alt="" width="60" height="60">
             </div>
-            <div class='bet-cont elem-cont'>
-                <div class='label'>Bet</div>
-                <input class='bet field' autocomplete='off' type='text' style='display: block'/>
-                <input class='bet field' autocomplete='off' type='text'/>
-            </div>
-            <div class='profit-cont elem-cont'>
-                <div class='label'>Profit</div>
-                <div class='profit' style='float: right'>0</div>
-                <div class='profit'>0</div>
-            </div>
-            <div class='fix-cont elem-cont'>
-                <div class='label'>Fix</div>
-                <input name='fix' type='radio' class='fix-choice'/>
-                <input name='fix' type='radio' class='fix-choice'/>
-                <div style='display: inline'>
-                    <div id='auto-label' class="label" style='display: inline'>Auto</div>
-                    <input name='fix' type='radio' class='fix-choice' checked/>
+            <div class="header__inner">
+                <div id='bottom-bar' class="header__elem exchange-rates"></div>
+
+                <div class='profit-percent-cont header__elem'>
+                    <span class='profit-percent'>0</span>
+                    <span>%</span>
                 </div>
             </div>
-            <div class='cur-cont elem-cont'>
-                <div class='label'>$</div>
-                <input name='currency1' type='checkbox' class='cur-choice' value='0'/>
-                <input name='currency2' type='checkbox' class='cur-choice' value='0'/>
-            </div>
-            <div class='cur-cont elem-cont'>
-                <div class='label'>€</div>
-                <input name='currency1' type='checkbox' class='cur-choice' value='0'/>
-                <input name='currency2' type='checkbox' class='cur-choice' value='0'/>
+        </header>
+
+        <div class='coef-cont elem-cont'>
+            <div class='label'>Coefficient</div>
+            <div class="container">
+                <input class='coef field input__elem' autocomplete='off' type='text' autofocus />
+                <input class='coef field input__elem' autocomplete='off' type='text' />
             </div>
         </div>
-        <div class='profit-percent-cont'>
-            <span class='profit-percent'>0</span>
-            <span>%</span>
+        <div class='bet-cont elem-cont'>
+            <div class='label'>Bet</div>
+            <div class="container">
+                <input class='bet field input__elem' autocomplete='off' type='text' />
+                <input class='bet field input__elem' autocomplete='off' type='text' />
+            </div>
         </div>
-        <button class="copy-button" onclick="copy_fork_to_buffer()">copy</button>
-        <div id='bottom-bar'></div>
-    </body>
+        <div class='profit-cont elem-cont'>
+            <div class='label'>Profit</div>
+            <div class="container">
+                <div class='profit profit__elem'>0</div>
+                <div class='profit profit__elem'>0</div>
+            </div>
+        </div>
+        <div class='fix-cont elem-cont'>
+            <div class='label'>Fix</div>
+            <div class="container">
+                <div class="radio__container">
+                    <input name='fix' type='radio' class='fix-choice radio__elem' id="radio1" />
+                    <label class="label__radio" for="radio1"></label>
+                </div>
+                <div class="radio__container">
+                    <input name='fix' type='radio' class='fix-choice radio__elem' id="radio2" />
+                    <label class="label__radio" for="radio2"></label>
+                </div>
+            </div>
+            <div>
+                <div class="auto__container">
+                    <div class="radio__container">
+                        <div id='auto-label' class="label">Auto</div>
+                        <input id="radio3" name='fix' type='radio' class='fix-choice radio__elem' checked />
+                        <label class="label__radio" for="radio3"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="test">
+            <div class='cur-cont elem-cont currency'>
+                <div class="currency__checkbox">
+                    <label for="checkbox1" class='currency-sign'>$</label>
+                    <input name='currency1' id="checkbox1" type='checkbox' class='cur-choice checkbox__elem'
+                        value='0' />
+                    <label for="checkbox1" class="label__checkbox"></label>
+                </div>
+                <div class="currency__checkbox">
+                    <input name='currency2' id="checkbox2" type='checkbox' class='cur-choice checkbox__elem'
+                        value='0' />
+                    <label for="checkbox2" class="label__checkbox"></label>
+                    <label for="checkbox2" class="currency-sign hidden">$</label>
+                </div>
+            </div>
+            <div class='cur-cont elem-cont currency'>
+                <div class="currency__checkbox">
+                    <label for="checkbox3" class='currency-sign'>€</label>
+                    <input name='currency1' id="checkbox3" type='checkbox' class='cur-choice checkbox__elem'
+                        value='0' />
+                    <label for="checkbox3" class="label__checkbox"></label>
+                </div>
+                <div class="currency__checkbox">
+                    <input name='currency2' id="checkbox4" type='checkbox' class='cur-choice checkbox__elem'
+                        value='0' />
+                    <label for="checkbox4" class="label__checkbox"></label>
+                    <label for="checkbox4" class="currency-sign hidden">€</label>
+                </div>
+            </div>
+        </div>
+        <button class="btn" onclick="copy_fork_to_buffer()">
+            <svg class="btn__icon">
+                <use xlink:href="#copy"></use>
+            </svg>
+            Copy
+        </button>
+    </div>
+
+</body>
+
 </html>
