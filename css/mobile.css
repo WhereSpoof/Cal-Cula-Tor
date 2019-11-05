@@ -1,61 +1,128 @@
-@media screen and (max-width: 1000px) {
-    div.cont {
-        margin-top: 10px;
-        margin-left: 5%;
-        float: none;
-        font-size: 1.3em;
+@media (min-width: 767px) {
+    body {
+        font-size: 20px;
     }
 
-    input {
-        float: left;
-        margin-right: 10px;
+    .profit-cont {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 1023px) {
+    .hidden {
+        display: none;
     }
 
-    div.elem-cont {
-        margin-bottom: 0px;
-        float: top;
+    .header {
         width: 100%;
     }
-
-    div.profit {
-        text-align: center;
-        float: left;
-        width: 45%;
-    }
-
-    div.profit-percent-cont {
-        font-size: 2em;
+    .header__inner {
         position: absolute;
-        top: calc(100% - 40px);
-        left: calc(100% - 3em);
+        bottom: 0;
     }
 
-    input.field[type="text"] {
-        width: 45%;
-        font-size: 1.3em;
+    .exchange-rates {
+        font-size: 18px;
     }
 
-    input[type="radio"] {
-        float: left;
-        display: inline;
-        border: 0px;
+    .cont {
+        position: relative;
+        flex-direction: row;
+        align-items: flex-start;
+        max-width: none;
+    }
+
+    .elem-cont {
+        width: 25%;
+        padding: 0 10px;
+        margin: 0;
+    }
+
+    .input__elem {
+        width: 100%;
+        margin: 0 0 10px;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    /* profit */
+    .profit-cont {
         width: 10%;
-        height: 2em;
+        vertical-align: middle;
+    }
+
+    .profit__elem {
+        margin: 0 0 10px;
+        height: 41px;
+        line-height: 41px;
+    }
+
+    /* fix */
+    .fix-cont {
+        width: 10%;
+    }
+
+   .radio__container    {
+       height: 41px;
+       margin-bottom: 10px;
+   }
+
+   .label__radio {
+       margin-top: 10px;
+   }
+
+    /*test */
+    .test {
+        width: 8%;
+        display: flex;
+        
+    }  
+
+    .currency {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cur-cont {
+        width: 100%;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .currency-sign {
+        padding: 10px 0;
+    }
+    .currency__checkbox {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .label__checkbox {
+        margin: 0;
+        margin-top: 10px;
+    }
+
+    .label__checkbox:nth-last-of-type(even)
+    {
+        margin-top: 30px;
+    }
+
+    /* button */
+
+    .btn {
+        margin: 0;
+        margin-bottom: auto;
+        margin-left: 35px;
+        margin-top: 5px;
     }
     
-    input[type="checkbox"] {
-        float: left;
-        display: inline;
-        border: 0px;
-        width: 10%;
-        height: 2em;
-    }
 
-    #auto-label {
-        visibility: hidden;
-    }
+    
 
-    button.copy-button {
-        visibility: hidden;
-    }
+    
+    
 }
