@@ -115,15 +115,16 @@ function calc_profit_percent() {
     p2 = v2 * c2 - (v1 + v2)
     p = (p1 + p2) / 2
 
-    p = ~~(p * 10) / 10
-    color = ~~p * 15
-    MAX_COLOR = 220
+    p = ~~(p * 1)
+    color = p * 4
+    MAX_COLOR = 210
+    MIN_COLOR = 90
     if (color < 0) {
-        color = -color + 40
+        color = -color + MIN_COLOR
         if (color > MAX_COLOR) color = MAX_COLOR
         profit_percent_cont.style.color = 'rgb(' + color + ',0,0)'
     } else {
-        color += 20
+        color += MIN_COLOR
         if (color > MAX_COLOR) color = MAX_COLOR
         profit_percent_cont.style.color = 'rgb(0,' + color + ',0)'
     }
