@@ -115,7 +115,7 @@ function calc_profit_percent() {
     p2 = v2 * c2 - (v1 + v2)
     p = (p1 + p2) / 2
 
-    p = ~~(p * 1)
+    p = ~~(p * 10) / 10
     color = p * 4
     MAX_COLOR = 210
     MIN_COLOR = 90
