@@ -1,3 +1,5 @@
+var currency = [ 1, 64.7501, 70.6814 ]
+
 var coef1, coef2, bet1, bet2, profit1, profit2, profit_percent, profit_percent_cont, hidden_fix
 
 var mults = [currency[0], currency[0]]
