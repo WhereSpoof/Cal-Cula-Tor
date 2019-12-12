@@ -1,8 +1,11 @@
+html {
+    font-family: 'Comfortaa', cursive;
+    font-display: auto;
+    font-size: 14px;
+}
+
 body {
     margin: 0;
-
-    font-family: 'Comfortaa', cursive;
-    font-size: 14px;
     line-height: 1.1;
     -webkit-font-smoothing: antialiased;
     color: #a7f1fa;
