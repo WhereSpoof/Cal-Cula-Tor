@@ -1,7 +1,8 @@
 html {
     font-family: 'Comfortaa', cursive;
-    font-display: auto;
+    font-style: normal;
     font-size: 14px;
+    font-display: swap;
 }
 
 body {
