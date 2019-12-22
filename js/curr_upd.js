@@ -7,7 +7,7 @@ xhr.open('GET', 'https://api.exchangerate-api.com/v4/latest/RUB', true)
 
 xhr.onload = function () {
     resp = JSON.parse(this.responseText)
-    console.log(resp)
+    // console.log(resp)
     
     currency = [1, (1 / resp.rates.USD).toFixed(2), (1 / resp.rates.EUR).toFixed(2)]
     s = ''
@@ -15,7 +15,7 @@ xhr.onload = function () {
     for (i = 1; i < 3; i++)
         s += currency_names[i] + ' ' + currency[i] + '     '
 
-    console.log(s)
+    // console.log(s)
     document.getElementById('bottom-bar').innerText = s
 }
 

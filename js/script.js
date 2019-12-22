@@ -42,6 +42,36 @@ window.onload = () => {
     calc(coef2, bet2, coef1, bet1)
 }
 
+function get_args() {
+    var url_string = window.location.href
+    var url = new URL(url_string)
+    
+    coef1.value = url.searchParams.get('c1')
+    coef2.value = url.searchParams.get('c2')
+    bet1.value = url.searchParams.get('b1')
+    bet2.value = url.searchParams.get('b2')
+    
+    cur1 = url.searchParams.get('cur1')
+    cur2 = url.searchParams.get('cur2')
+
+    if (cur1 == 0) {
+        document.getElementsByClassName('cur-choice')[0].checked = 1
+        set_mult(1, 0, 0)
+    }
+    if (cur1 == 1) {
+        document.getElementsByClassName('cur-choice')[1].checked = 1
+        set_mult(1, 1, 1)
+    }
+    if (cur2 == 0) {
+        document.getElementsByClassName('cur-choice')[2].checked = 1
+        set_mult(2, 2, 0)
+    }
+    if (cur2 == 1) {
+        document.getElementsByClassName('cur-choice')[3].checked = 1
+        set_mult(2, 3, 1)
+    }
+}
+
 function set_mult(pos, index, multi) {
     if (document.getElementsByClassName('cur-choice')[index].checked)
         mults[multi] = currency[pos]
@@ -77,15 +107,6 @@ function get_bet(index) {
 function click(value, is_fix_a_priority = false) {
     hidden_fix = value
     high_calc(is_fix_a_priority)
-}
-
-function get_args() {
-    var url_string = window.location.href
-    var url = new URL(url_string)
-    coef1.value = url.searchParams.get('c1')
-    coef2.value = url.searchParams.get('c2')
-    bet1.value = url.searchParams.get('b1')
-    bet2.value = url.searchParams.get('b2')
 }
 
 function tab_handle(ev) {
