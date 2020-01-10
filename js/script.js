@@ -1,4 +1,4 @@
-var currency = [ 1, 64.7501, 70.6814 ]
+var currency = [1, 64.7501, 70.6814]
 
 var coef1, coef2, bet1, bet2, profit1, profit2, profit_percent, profit_percent_cont, hidden_fix
 
@@ -45,12 +45,12 @@ window.onload = () => {
 function get_args() {
     var url_string = window.location.href
     var url = new URL(url_string)
-    
+
     coef1.value = url.searchParams.get('c1')
     coef2.value = url.searchParams.get('c2')
     bet1.value = url.searchParams.get('b1')
     bet2.value = url.searchParams.get('b2')
-    
+
     cur1 = url.searchParams.get('cur1')
     cur2 = url.searchParams.get('cur2')
 
@@ -59,11 +59,11 @@ function get_args() {
         set_mult(1, 0, 0)
     }
     if (cur1 == 1) {
-        document.getElementsByClassName('cur-choice')[1].checked = 1
+        document.getElementsByClassName('cur-choice')[2].checked = 1
         set_mult(1, 1, 1)
     }
     if (cur2 == 0) {
-        document.getElementsByClassName('cur-choice')[2].checked = 1
+        document.getElementsByClassName('cur-choice')[1].checked = 1
         set_mult(2, 2, 0)
     }
     if (cur2 == 1) {
@@ -77,12 +77,12 @@ function set_mult(pos, index, multi) {
         mults[multi] = currency[pos]
     else
         mults[multi] = currency[0]
-    
+
     high_calc(true)
 }
 
 function set_profit(index, value) {
-    if (index === 1) 
+    if (index === 1)
         profit1.innerHTML = ~~(value / mults[0])
     else if (index === 2)
         profit2.innerHTML = ~~(value / mults[1])
@@ -92,7 +92,7 @@ function set_bet(index, value) {
     if (value < 1) return
 
     if (index === 1)
-        bet1.value = hybrid_round(value / mults[0])    
+        bet1.value = hybrid_round(value / mults[0])
     else if (index === 2)
         bet2.value = hybrid_round(value / mults[1])
 }
@@ -101,7 +101,7 @@ function get_bet(index) {
     if (index === 1)
         return get_int(bet1) * mults[0]
     else if (index === 2)
-        return get_int(bet2) * mults[1]    
+        return get_int(bet2) * mults[1]
 }
 
 function click(value, is_fix_a_priority = false) {
@@ -118,7 +118,7 @@ function tab_handle(ev) {
             if (i == 3)
                 document.getElementsByClassName('field')[0].focus()
             else
-                document.getElementsByClassName('field')[i+1].focus()
+                document.getElementsByClassName('field')[i + 1].focus()
             break
         }
 
@@ -176,11 +176,11 @@ function high_calc(is_fix_a_priority = false) {
         if (fix_mode === 1)
             if (hidden_fix === 1) calc(coef1, bet1, coef2, bet2)
             else if (hidden_fix === 2) calc_profit()
-        
+
         if (fix_mode === 2)
             if (hidden_fix === 2) calc(coef2, bet2, coef1, bet1)
             else if (hidden_fix === 1) calc_profit()
-        
+
         if (fix_mode === 3)
             if (hidden_fix === 1) calc(coef1, bet1, coef2, bet2)
             else if (hidden_fix === 2) calc(coef2, bet2, coef1, bet1)
@@ -242,13 +242,13 @@ function check_float(elem) {
 
 function copy_fork_to_buffer() {
     const str =
-    `${get_int(bet1)} * ${get_float(coef1)} --> ${profit1.innerHTML}
+        `${get_int(bet1)} * ${get_float(coef1)} --> ${profit1.innerHTML}
      ${get_int(bet2)} * ${get_float(coef2)} --> ${profit2.innerHTML}`;
     var dummy = document.createElement("textarea")
-    // to avoid breaking orgain page when copying more words
-    // cant copy when adding below this code
+        // to avoid breaking orgain page when copying more words
+        // cant copy when adding below this code
     document.body.appendChild(dummy)
-    // Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
+        // Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
     dummy.value = str
     dummy.select()
     document.execCommand("copy")
